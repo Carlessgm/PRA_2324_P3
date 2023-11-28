@@ -48,7 +48,7 @@ class TableEntry{
 
 		//Imprime por pantalla la Clave y el Valor del "par" (te)
 		friend ostream&operator<<(ostream &out, const TableEntry<V> &te){
-			out << "Clave: " << te.key << ", Valor: " << te.value;
+			out << "(Clave -> '" << te.key << "' => Valor ->  " << te.value << ")";
 			return out;
 		}
 };
