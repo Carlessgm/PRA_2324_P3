@@ -46,6 +46,22 @@ class TableEntry{
 			}
 		}
 
+		friend bool operator<(const TableEntry<V> &te1, const TableEntry<V> &te2){
+		        if(te1.key < te2.key){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+		
+		friend bool operator>(const TableEntry<V> &te1, const TableEntry<V> &te2){
+		        if(te1.key > te2.key){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
 		//Imprime por pantalla la Clave y el Valor del "par" (te)
 		friend ostream&operator<<(ostream &out, const TableEntry<V> &te){
 			out << "(Clave -> '" << te.key << "' => Valor ->  " << te.value << ")";

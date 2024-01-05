@@ -45,9 +45,9 @@ class BSTree{
   //Método recursivo para el recorrido inorden para mostrar a través de "out" los elementos del ABB
   void print_inorder(ostream &out, BSNode<T>* n) const{
     if(n != nullptr){
-      print_inorder(out, n -> left);
-      out << n -> elem << " ";
-      print_inorder(out, n -> right);
+      print_inorder(out, n -> left);    //Primero miramos izq
+      out << n -> elem << " ";          //Si ya no hay izq imprimimos el elem actual
+      print_inorder(out, n -> right);   //Una vez mirado izq e impreso actual miramos drch
     }
   }
 
@@ -60,13 +60,15 @@ class BSTree{
     } else if(n -> elem > e){
         n -> left = remove(n -> left, e);
     } else{
-        if(n -> left != nullptr && n -> right != nullptr){       //Tiene 2 descendientes
+        if(n -> left != nullptr && n -> right != nullptr){       //Tiene 2 descendientes (Tiene hijos tanto drch como izq)
 	    n -> elem = max(n -> left);
 	    n -> left = remove_max(n -> left);
-        } else{                                                  //Tiene 1 o 0 descendientes
-	    BSNode<T>* temp = (n -> left != nullptr) ? n -> left : n -> right;
-	    delete n;
-	    return temp;
+        } else{                                                  //Tiene 1 o 0 descendientes (No tiene drch o izq)
+	  if(n -> left != nullptr){
+	      n = n -> left;
+	  } else{
+	      n = n -> right;
+	  }
 	}
     }
     return n;
@@ -86,9 +88,7 @@ class BSTree{
   //Método recursivo que elimina el elemento de máximo valor contenido en el (sub-)árbol cuya raíz es n
   BSNode<T>* remove_max(BSNode<T>* n){
     if(n -> right == nullptr){
-        BSNode <T>* temp = n -> left;
-        delete n;
-        return temp;
+        return n -> left;
     } else{
         n -> right = remove_max(n -> right);
         return n;
