@@ -7,12 +7,12 @@
 using namespace std;
 
 template <typename V>
-class TableEntry{
+class TableEntry{            //Clase que representa los pares clave->valor
 	public:
 		string key;
 		V value;
 
-		//Método constructor de Clave y Valor
+		//Método constructor de par Clave->Valor
 		TableEntry(string key, V value){
 			this -> key = key;
 			this -> value = value;
@@ -28,7 +28,7 @@ class TableEntry{
 			key = "";
 		}
 
-		//Devuelve 1 si las claves son iguales o 0 si no lo son
+		//Devuelve 1 si las claves son iguales o 0 si no lo son (es función bool)
 		friend bool operator==(const TableEntry<V> &te1, const TableEntry<V> &te2){
 			if(te1.key == te2.key){
 				return 1;
@@ -37,7 +37,7 @@ class TableEntry{
 			}
 		}
 
-		//Devuelve 1 si las claves son diferentes o 0 si no lo son
+		//Devuelve 1 si las claves son diferentes o 0 si no lo son (es función bool)
 		friend bool operator!=(const TableEntry<V> &te1, const TableEntry<V> &te2){
 			if(te1.key != te2.key){
 				return 1;
@@ -46,6 +46,7 @@ class TableEntry{
 			}
 		}
 
+		//Devuelve 1 clave 1 > clave 2, si no lo es, devuelve 0 (Para Árboles Binarios)
 		friend bool operator<(const TableEntry<V> &te1, const TableEntry<V> &te2){
 		        if(te1.key < te2.key){
 				return 1;
@@ -53,7 +54,8 @@ class TableEntry{
 				return 0;
 			}
 		}
-		
+
+		//Devuelve 1 clave 1 > clave 2, si no lo es, devuelve 0 (Para Árboles Binarios)
 		friend bool operator>(const TableEntry<V> &te1, const TableEntry<V> &te2){
 		        if(te1.key > te2.key){
 				return 1;

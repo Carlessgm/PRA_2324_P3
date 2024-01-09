@@ -13,16 +13,16 @@ class BSTree{
   int nelem;            //Número de elementos almacenados en el ABB
   BSNode<T> *root;      //Nodo raíz del ABB
 
-  //Método recursivo que busca el elemento "e" en el ABB
+  //Método recursivo que busca el elemento "e" en el ABB (raíz del árbol (root) = n)
   BSNode<T>* search(BSNode<T>* n, T e) const{
-    if(n == nullptr){
+    if(n == nullptr){                    //Si llegamos a un nodo nulo -> No está el elemento
         throw runtime_error("Elemento no encontrado en el ABB");
     } else if(n -> elem < e){            //Si "e" es mayor que n->elem, se busca hacia la derecha
         return search(n -> right, e);
     } else if(n -> elem > e){            //Si "e" es mayor que n->elem, se busca hacia la izquierda
         return search(n -> left, e);
     } else{
-        return n;
+        return n;                //Devuelve el Nodo donde se encuentra  elemento "e"
     }
   }
 
@@ -117,7 +117,7 @@ class BSTree{
 
   //Función lanzadera (Simplemente llama a la función que busca el elemento)
   T search(T e) const{
-    return search(root, e) -> elem; //La función search privada devuelve el Nodo donde se encuentra "e", por eso, de esa función nos tenemos que queda con el elemento (que será "e" si se ha encontrado)
+    return search(root, e) -> elem; //La función search privada devuelve el Nodo donde se encuentra "e", por eso, de esa función nos tenemos que quedar con el elemento (que será "e" si se ha encontrado)
   }
 
   //Función que actúa como interfaz al método search(T e), una manera más cómoda de llamarla

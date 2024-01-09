@@ -15,7 +15,7 @@ template <typename V>
 class BSTreeDict: public Dict<V>{    //Clase intermediaria entre BSTree y Dict
 
  private:
-  BSTree<TableEntry<V>>* tree;    //ABB con elementos tipo TableEntry<V>
+  BSTree<TableEntry<V>>* tree;       //ABB con elementos tipo TableEntry<V> (ABB con pares clave->valor)
   
  public:
   //Método constructor: crea un ABB vacío con memoria dinámica
